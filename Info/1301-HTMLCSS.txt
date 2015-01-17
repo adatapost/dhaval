@@ -256,3 +256,113 @@ a{
 
 <a href="#">Home</a>
 <a href="#">About us</a>
+
+3. background - to paint the background of element (or DOM).
+
+    background: color;
+    background: url(imagefile);
+    background: color url(imagefile);
+
+    Color value: You can use color constants like black,red, blue, yellow,
+                 green, orange, etc.
+                : You can use #000000 (six char) hexadecimal to represent 		  color
+                 :You can also use rgb() and argb() functions.
+                     rgb(red-value,green-value,blue-value)
+
+   e.g
+body {
+ background: #00ff00; /* green */
+}
+Or
+body {
+  background: rgb(0,255,0); /* green */   
+}
+
+function rgb() uses integer value between 0 to 255 for each color.
+
+Paint background using image
+-----------------------------
+1. copy your image at /css/ folder (say back.png)
+2. body {
+    background: url(back.png);
+   }
+
+Stop the tiling (repeat)
+---------------------------
+body {
+  background: url(back.png) no-repeat;
+}
+
+Tile horizontally or vertically (repeat-x repeat-y)
+----------------------------------------------------
+
+background: url(image) repeat-x;
+background: url(image) repeat-y;
+
+Paint at specific location
+----------------------------------------------------
+background: url(image) no-repeat  left|top|right|bottom|center  left|top...;
+
+e.g
+  background: url("big-star.png") no-repeat left top,
+              url("big-star.png") no-repeat left bottom,
+              url("big-star.png") no-repeat center center;
+  width:500px;
+  height:300px;
+
+Paint a section of "image" as background
+------------------------------------------
+Following is an image (incons.png)
+ |---------------------------|
+ |     |      |       |      |
+
+CSS:
+.icon {
+    border:1px solid #aaa;
+    width: 60px;
+    height: 60px;
+}
+.first{
+    background: url(icons.png) no-repeat 0px 0px ;
+}
+.second{
+    background: url(icons.png) no-repeat -65px 0px;
+}
+.three{
+    background: url(icons.png) no-repeat -145px 0px;
+}
+.four{
+    background: url(icons.png) no-repeat 0px -60px;
+}
+
+HTML:
+  <div class="icon first"></div>
+  <div class="icon second"></div>
+  <div class="icon three"></div>
+  <div class="icon four"></div>
+
+Paint an image at specified location with or without scroll
+-------------------------------------------------------------
+               background: url(big-star.png) no-repeat center center;
+    background-attachment: fixed; /* or scroll */
+
+
+4. border - draw border around edges.
+
+   border: width style color; where width value is in px.
+                                    style can be solid, dotted, dashed, ridge
+				    outset etc
+   border-left, border-top, border-bottom and border-right uses same 			proeprty value.
+  
+5. border-radius: value;  Set round corner for all four angles
+   border-radius: leftTop rightTop bottomRight leftBottom;
+6. box-shadow: x y depth color;  Show box shadow around the DOM.
+
+.box {
+ border: 1px solid #aaa;
+ box-shadow: 3px 3px 3px #aaa;
+ border-radius:10px;
+}
+
+<h1 class="box">Hello World</h1>   
+
