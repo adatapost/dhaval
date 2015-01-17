@@ -1,0 +1,258 @@
+ CSS Selectors
+ ============================================================
+ Always create "style.css" document to store "SELECTORS".
+
+ Example:
+  /webapp/
+         |
+         |----/css/
+                  style.css
+         |
+         | index.html (or .aspx or .php)
+
+ style.css
+ =========
+/* Universal selector */
+* {
+  border: 1px solid #aaa;
+}
+
+/* Type or Tag selector */
+body {
+  background: #d23;
+  color: #eee;
+}
+h1 {
+ font-size: 5em; /* 1em = 100% */
+}
+
+/* Class selector */
+.blue { 
+  color: blue;
+}
+.green {
+  color: green;
+}
+.box {
+ border: 1px solid black;
+}
+.text-big {
+  font-size:2em;
+}
+
+/* ID selector */
+#center-500 {
+  width: 500px;
+  margin: 0 auto;
+}
+
+
+index.html
+=====================
+<!doctype html>   <!--- Never forget to include doctype -->
+
+<html>
+ <head>
+   <title>CSS Selector</title>
+   <link rel="stylesheet" href="css/style.css"/>   <!-- embed .css file -->
+ </head>
+ <body>
+  <h1>Site Title</h1>
+  <h2>Sub title</h2>
+
+  <p class="green box">   <!-- one or more class selectors can be 			       glued/applied -->
+    This is green box
+  </p>
+  <div class="green box text-big">
+    This is green box and big text
+  </div>
+  <div id="center-500" class="green box text-big">
+    This is green box and big text and #center-500
+  </div>
+ </body>
+</html>
+
+
+There are four - Universal, Type/Tag, Class and ID are main selectors. We can create other selectors from using these main selectors.
+
+1. selector1 selector2 {   Descedent or Children selector
+   }
+Code in .css
+-------------
+div  p {
+  color: red;
+} 
+.menu {
+  list-style: none;
+  padding: 0;
+}
+.menu .item {
+  display: inline-block;
+}
+
+code in .html
+-------------
+  <div>
+     <p>Para1</p>
+     <section>
+        <p>Para2</p>
+      </section>
+      <p>Para3</p>
+   </div>
+
+   <ul class="menu">
+      <li class="item">File</li>
+      <li class="item">Edit</li>
+   </ul> 
+
+2. Child selector
+   selector1 > selector2 { }
+   To set style for "selector2" available at the 1st level.
+Example:
+ div > p {
+   color: red;
+ }
+
+ <div>
+   <p>Para1</p>
+   <section>
+     <p>Para2</p> <!-- wont be red -->
+   </section>
+   <p>Para3</p>
+  </div>
+
+3. Sibling selector 
+   selector1 + selector2 { 
+   }
+
+ h2 + p {
+   color: red;
+ }
+
+<h2>Chapter1</h2>
+<p>This will be red</p>
+<p>This wont be red</p>
+<h2>Chapter2</h2>
+<p>This will be red</p>
+<h2>Chapter3</h2>
+<p>This will be red</p>
+
+4. psuedo selector
+
+   selector1:pseudo-selector {
+    ...
+   }
+
+1.  ::selection { } -- To set style for body text selection  
+
+selection is available is many web-browsers with or without vendor specific property.
+
+::selection {
+  background: #d34;
+}
+/* vendor specific property for Mozilla -moz */
+::-moz-selection {
+  background: #d34;
+}
+/* Chrome/safari -webkit */
+::-webkit-selection {
+ background: #d34;
+}
+/* Microsoft -ms */
+::-ms-selection {
+ background: #d34;
+}
+
+2. pseudo for links (hyperlinks)
+
+ a:active { }
+ a:link {}
+ a:visited {} -- Set style for hyperlink for different states.
+
+a:link {
+  color:red;
+}
+a:visited {
+ color:yellow;
+}
+a:active {
+ background:blue;
+ color:white;
+}
+
+<a href="#">Home</a>
+<a href="#">About us</a>
+
+3. hover - set style when mouse pointer enters into the area of a selector.
+
+   selector: hover { }
+
+a:hover {
+  background:red;
+  color:white;
+}
+
+<a href="#" title="Visit www.abc.com">Home</a>
+...
+
+4. nth-child(value) -- style the n-th child.
+
+ selector:nth-child(value) {}
+
+tr:nth-child(1) { /* style for 1st row */
+  background: black;
+  color: white;
+}
+
+tr:nth-child(even) { /* style for even rows. Use 'odd' for odd-rows */ 
+  background: #aaa;
+}
+
+<table>
+  <tr><td>10</td><td>Raj</td></tr>
+  .....
+</table>
+
+
+CSS Properties
+===============
+
+1. margin:value; - to set margin for four edges
+   margin:top right bottom left; set margin for individual edge
+
+   margin-top:value;
+   margin-left:value;
+   margin-right:value;
+   margin-bottom:value; These properties are called "short hand" or margin-*
+
+   Use px, % , em and auto units.
+   e.g
+
+html, body {
+  margin:0;
+}
+h1 {
+ margin:20px;
+ border:1px solid #aaa;
+}
+
+To display elements at the center of browser, set "auto":
+
+h1 {
+ margin:auto;
+ width:400px;
+ border:1px solid #aaa;
+}
+
+2. padding:value;
+   padding:top right bottom left;
+   padding-* (short hand)
+   To "pad (add spaces)" the element.
+
+a{
+ padding:5px;
+ text-decoration:none;
+}
+
+<a href="#">Home</a>
+<a href="#">About us</a>

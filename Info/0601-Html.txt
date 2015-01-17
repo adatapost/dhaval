@@ -1,0 +1,77 @@
+ HTML
+ =====
+
+ HTML is a standard to present data on the web. The HTML "standard" is also
+ known as "HTML Specification" and it is denoted by number. e.g. HTML 4, HTML  5. This specification is maintained by the World Wide Web Consortium - W3C -  a committee which maintain the "standards" for web technologies - HTML,   XHTML, XML, CSS, MathML, SVG and so on.
+
+ Web-browers
+ ========
+ The web-browser also called "User-agents". It is the most complex software
+ in our computer. The web-browser is comprises of number of software modules  including:
+   
+   1. HTML parsers -- Implementation of HTML,XHTML, XML standards and
+                      it parses, validates,verify and creates HTML object of                        each markup (tag).
+                      The "Parser" creates HTML object for each <tag> and
+                      text (content) - It is known as "DOM - Document Object
+                      Model".
+
+                      [Start Developer Tool for more information. Chrome &
+                       Mozilla - CTRL+SHIFT+I. IE - press F12]
+   2. CSS Modules -- Once DOMs are created, the CSS Modules - color, 			animation, layout and others attach stylesheet 			properties to the DOMs.
+   3. JavaScript Engine -- It is JavaScript runtime environment to execute
+			JavaScript code.
+   4. Graphics Engine -- It is the "graphics software" in the web-browser
+			which render (paint) content on the body including 
+                        text, images, video, audio and many more.
+
+  [Most browsers are created using C/C++ programming languages & C/C++ libs]
+
+ CSS
+ ====
+
+ CSS - Cascading Stylesheet is an instruction to the web-browser to "style"        the DOM.
+
+ CSS Properties -- CSS property is "name: value" pair and terminated by 		   semi-colon.
+ CSS Selectors -- They are building block of CSS. The Selector is a group 		name under which we can set one or more CSS properties.       
+
+             e.g.
+     /* Tag selector */
+     body {
+       color: #de3;
+       font-size: 2em;
+     }
+
+   Properties are case-sensitive. There are different kinds of "selectors"    including :
+
+           1. Tag selector
+           2. ID selector
+           3. Class selector
+           4. Child selector
+           5. Children selector (Descedent)
+           6. Sibling selector
+           7. Pseudo selector
+   
+   
+   JavaScript
+   ==========
+   This is most misunderstood programing language in the world. It exists    everywhere -- It is the only language to write & execute program on
+   web-browser.
+
+   Application  of JavaScript
+   -------------------------------
+   1. Create, Update, Remove DOMs programatically.
+   2. Set/Reset CSS properties programaticlaly.
+   3. Model the data in form of class, super-class, objects, etc
+   4. Handle "events" of DOMs.
+   5. Background request system - called Asynchronious JavaScript And XML 				 (AJAX)
+   6. JavaScript is pure-object oriented programming language and it is used
+      for developing client applications. However, the JavaScript is also
+      used to develop "Server-applications (it replaces PHP,ASP.NET etc)".       The NodeJS server-environment is for "server-side" JavaScript.
+   7. Validating user input/selection etc.
+ 
+
+                      
+
+  
+
+ 
