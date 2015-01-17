@@ -1,0 +1,7 @@
+﻿html,body,form,table,div,section,article,footer, header,
+aside, h1,h2,h3,h4,h5, fieldset {
+    margin:0;
+}
+body {
+    font-family: Georgia, Arial, sans-serif;
+}
