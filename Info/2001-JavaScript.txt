@@ -1,0 +1,186 @@
+ JavaScript 
+ =====================================================================
+ JavaScript is a programming language mostly used to develop client programs but NodeJS server environment  (like PHP platform) uses JavaScript language to develop server-side programs.
+
+ 1. JavaScript is case-sensitive
+ 2. JavaScript program is executed by the JavaScript Engine which is 	installed into your web-browser.
+ 3. To debug the JavaScript code we will use "Developer Tool" (Press CTRL    +SHIFT + I on web-browser to open this tool)
+ 4. JavaScript is an object-oriented programming language
+ 5. JavaSCript supports functional programming ( We can store memory     reference of functions along with data)
+ 6. Syntax are derived from C/C++ language.
+ 7. JavaScript is dynamic language and hence it has no explicit datatypes     like int,char,float etc but it has "automatic or implicit" type.
+
+Application of JavaScript
+--------------------------
+
+ 1. To represent simple & complex data at client side (into memory).
+ 2. To perform basics programming tasks - selection, sequence and loops.
+ 3. To select or read the DOMs.
+ 4. To create new DOMs
+ 5. To Update/delete the DOMs
+ 6. To set/get DOM attributes
+ 7. To set/get CSS properties of DOMs
+ 8. To request web-resource backgroundly (behind the screen) and this feature
+    is called AJAX - Asynchronious JavaScript And XML.
+ 9. To perform animated things 
+10. To validate user-input
+
+JavaScript Language Basics
+--------------------------
+The <script> HTML tag embeds the JavaScript code and it can appear anywhere.
+
+Example:
+<!doctype html>
+
+<script>
+  console.log( 'This is JavaScript code' );   //Open Developer Tool + Console
+</script>
+
+
+Variables and datatypes
+=======================
+
+The "var" keyword is used to create a variable. You can use "typeof" keyword to examine the typename of data.
+
+<script>
+   var age;
+   var studentName;
+   
+   console.log( age, studentName);
+   console.log( typeof(age), typeof(studentName));
+
+   age = 10;
+   studentName = 'Rajesh';
+   console.log( age, studentName);
+   console.log( typeof(age), typeof(studentName));
+</script>
+
+You can also create a variable by assigning value:
+
+  <script>
+     age = 10;
+     studentName = "Mohan";
+     console.log( age, studentName );
+  </script>
+
+
+JavaScript Automatic Types
+----------------------------
+1. Number - It is 64bits type represent integer and float data.
+2. String - Value embed with single or double quote.
+		e.g  name = 'Raj';
+                     address = "12-PQR";
+3. Date - It represent the date object
+4. Object - It represent the any kind of data including function, objects,
+		array, string, date, number etc.
+5. Array - It represents the array
+6. RegExp - It represents the regular expression
+7. Maths - It represents mathematical functions
+8. Boolean - The "false" and "true" special values.
+
+e.g
+
+<script>
+  var no = 10;
+  var nm = "Rajesh";
+  var ar = [10,20,30,40];
+  var dt = new Date();
+  var emp = {"no": 10,"name": "Rajesh"};
+ 
+  console.log( no, typeof(no) );
+  console.log( nm, typeof(nm) );
+  console.log( dt, typeof(dt) );
+  console.log( ar, typeof(ar) );
+  console.log( emp, typeof(emp) );
+</script>
+
+
+The "window" namespace
+=========================
+All declarations are automatically added into the "window" namespace. The "namespace" is house underwhich all declared entities are alive.
+
+Example:
+<script>
+   age = 10;
+   window.stdName = "Mohan";
+   var status = false;
+ 
+   console.log( window.age, window.stdName, window.status);
+ //Or just use
+   console.log(age, stdName, status);
+</script>
+
+The "falsy" value
+============================================
+Following values are considered "false" when they are used with if or loop control statement.
+
+0 or 0.0
+"" or ''
+false
+null
+NaN (not a number)
+Infinity
+undefined
+
+ex:
+
+<script>
+  var age;
+
+  if(age) {
+      console.log( age );
+  } else {
+      console.log( 'Not set' );
+  }
+</script>
+
+Set above mentioned value to "age" and see what happen?
+
+example:
+
+<script>
+    var no = "10";
+
+    if(no) {
+        var square = no * no;
+        if(square)
+              console.log( square );
+        else
+              console.log( 'Invalid data' );
+    } else {
+        console.log( 'Not set' );
+    }
+</script>
+
+Example: parseInt(), parseFloat() - to convert string data to number.
+
+<script>
+  var data = "100.10";
+  var no = parseFloat(data);
+  if(no) { 
+       console.log( no );
+  } else {
+       console.log( "Invalid Number" );
+  }
+</script>
+
+You can use - or * or / operator to convert "string" data to number.
+
+The "+" operator is used to concat the string if any one expression is typeof string.
+
+<script>
+    console.log( '10' + '10' );
+    console.log( '10' + 10 );
+    console.log( '10' - '0' );
+    console.log( '10' - 0 );
+    console.log( '10' * 1 );
+</script>
+
+Control statement: if, switch, for, while, do while, break, continue.
+<script>
+  for(i=1;i<=10;i++) {
+    console.log( Maths.pow(2,i) );
+  }
+</script>
+
+

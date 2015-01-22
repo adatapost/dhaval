@@ -1,0 +1,245 @@
+ Arrays
+ ========================
+
+ JavaScript array is an object and is created via [] or Array() syntax:
+  
+   var array = [];  or var array = new Array();
+
+Example:
+
+  <script>
+     var nos = [10,20,30];
+     var names = []; // empty array
+     
+     //add new elements
+     nos[20] = 1000;
+     nos[6] = 90;
+ 
+     names[10] = "Raj";
+     names[3] = "Mohan";
+
+     console.log( nos );
+     console.log( names );
+
+     //print elements via index value
+     console.log( nos[0], nos[1], names[20], names[0] );
+
+     //for in loop to traverse the arrays
+     for(i in nos) {
+        console.log(i, nos[i]);
+     }
+     for(i in names) {
+        console.log(i, names[i]);
+     }
+ </script>
+
+Object (JSON - JavaScript Object Notation)
+===========================
+The JavaScript Object Notation syntax is used to create an object:
+
+   var varName = { "property1": value1, "property2": value2,...};
+
+Example:
+<script>
+  var emp = { "no": 10, "name": "Raj" };
+
+  //Read properties
+  console.log( emp.no, emp.name ); //via . operator
+  console.log( emp["no"], emp["name"]); //via [] subscript operator
+
+  //set properties
+  emp.no = 90;
+  emp["name"] = "Mahesh";
+  console.log( emp.no, emp.name );
+  
+  //add properties
+  emp.address = "12-ABC Society";
+  console.log(emp.no, emp.name, emp.address);
+  console.log(emp);
+</script>
+
+Functions - JavaScript Builtin functions
+=========================================
+1. parseInt, parseFloat - to parse "string" data to number.
+  Example:
+  <script>
+     var data = "100.12";
+     var amount = parseFloat( data );
+     if( amount ) {
+         console.log( amount );
+     } else {
+         console.log( 'Invalid numeric data' );
+     }
+  </script>
+2. alert(' Message box ');
+3. prompt('Input box');
+3. confirm('Confirm dialog');
+4. Math.abs, Math.pow etc
+
+<script>
+  var amount = prompt('Enter amount  : ');
+  if( parseFloat( amount ) ) {
+      alert( 'You have input ' + amount );
+      var result = confirm('Do you want to continue?');
+      if( result ) {
+           alert('OK is pressed');
+      } else {
+           alert('Cancel is pressed');
+      }
+  } else {
+     alert('Invalid input. Refresh the page');
+  }
+</script>
+
+JavaScript User-defined functions
+=================================
+Two syntax to create functions:
+
+1. function functionName( parameters... ) { }
+2. var varName = functionName( parameters.. ) { }; This function has    no "name" that's why it is called "anonymous function".
+
+<script>
+  function add( no1, no2) {
+    console.log( no1 + no2 );
+  }
+  var sub = function( no1, no2 ) {
+    return no1 - no2;
+  }; //<--- Rememeber the ; 
+
+ //call the function
+ add( 10, 20);
+ var result = sub(5,3);  
+ console.log( result );
+</script>
+
+ Javascript functions can be called by DOM's event. Each HTML object (DOM) has number of events whose name begins with "on" prefix.
+
+ e.g
+    onclick   -  while clicking on DOM.
+    onkeypress,
+    onkeydown,
+    onkeyup   -  while pressing or releasing a key
+
+    onmouseup,
+    onmousedown,
+    onmousemove,
+    onmouseover,
+    onmouseout  - while mouse actions on DOM
+
+ Example:
+<div onclick="sayHello()">Say Hello</div>
+<a href="#" onclick="sayHi()">Say Hi</a>
+<input type="button" value="Say Hi" onclick="sayHi()"/>
+<script>
+    function sayHello() {
+        console.log('Hello');
+    }
+    function sayHi() {
+        alert('Hi! there.');
+    }
+</script>
+
+Working with the DOMs
+================================================================
+Each HTML tag is transformed into an object whose properties are accessed via . or [] subscript operators. Note that the DOM properties names are in "camelCase" - first word is lowercase and then capitalize the first letter of each word. e.g  sayHi  sayHello
+
+Example: Accessing "body" DOM via document.body property
+
+<script>
+  document.body.style.fontSize = "2em";
+  document["body"]["style"]["backgroundColor"] = "red";
+  document.body.style.color = "white";
+</script>
+
+Example: Change fontSize of body while clicking on button.
+<a href="#" onclick="sizeUp()">A+</a>
+<a href="#" onclick="sizeDown()">A-</a>
+<script>
+  var size = 1;
+  function sizeUp() {
+     size = size + 0.1; //10%
+     document.body.style.fontSize = size + "em";
+  }
+  function sizeDown() {
+     size = size - 0.1; //10%
+     document.body.style.fontSize = size + "em";
+  }
+</script>
+
+Selecting a specific DOM via document.getElementById("id") function
+===================================================================
+<h1 id="title"></h1>
+<div id="data"></div>
+
+<script>
+  var title = document.getElementById("title");
+  var data = document.getElementById("data");
+ 
+  //set inner content
+  title.innerHTML = "The ABC Ltd";
+  data.innerHTML = "<h3>Welcome</h3><strong>We are happy...</strong>";
+ 
+  //change style properties
+  title.style.color = "#d33";
+  data.style.border = "1px solid #aaa";
+</script>
+
+The document.getElementById("id") returns a DOM whose "id" matches with given "id", returns null otherwise.
+
+Example: Hide/show and set color
+
+<a href="#" onclick="hideIt()">Hide</a>
+<a href="#" onclick="showIt()">Show</a>
+<a href="#" onclick="blueColor()">Blue Text</a>
+<hr/>
+<div id="output">
+  <h3>Introduction</h3>
+  <p>We are very glad to announce that ...</p>
+</div>
+<script>
+  var output = document.getElementById("output"); //read the DOM
+  function hideIt() {
+     output.style.display = "none";
+  }
+  function showIt() {
+     output.style.display = "block";
+  }
+  function blueColor() {
+     output.style.color = "#00f";
+   }
+</script>
+
+Accessing "value" of <input/>, <select> and <textarea> using "value"
+=============================================================
+No: <input type="text" id="no1"/>
+No: <input type="text" id="no2"/>
+<input type="button" onclick="addThem()" value="Add"/>
+<p id="message"></p>
+
+<script>
+ var no1 = document.getElementById("no1");
+ var no2 = document.getElementById("no2");
+ var message = document.getElementById("message");
+ function addThem() {
+    var m1 = parseFloat( no1.value );
+    var m2 = parseFloat( no2.value );
+ 
+    if( m1 && m2 ) {
+       message.innerHTML = "Sum : " + (m1 + m2);
+    } else {
+       message.innerHTML = "Invalid number format";
+    }
+ }
+</script>
+
+
+Ex: Invoke addThem onkeyup event:
+
+No: <input type="text" id="no1" onkeyup="addThem()"/>
+No: <input type="text" id="no2" onkeyup="addThem()/>
+...... as per previous example ...
+
+
+
+
+ 

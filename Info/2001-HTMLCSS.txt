@@ -1,0 +1,86 @@
+ The <form> elements
+ ==============================================================
+
+ 1. <form> element is responsible to collect input data and sent it to web-    server.
+
+    General syntax:
+
+     <form method="get or post" 
+           action="php or aspx program file"
+           enctype="x-urlencoded-form or multipart/form-data">
+        ....
+     </form>
+
+ 2. <input type="text" /> - single line input
+ 3. <input type="password" /> - password text
+ 4. <input type="number" /> - number input
+ 5. <input type="email" /> - email input
+ 6. <input type="url" /> - URL input
+ 7. <input type="tel" /> - Telephone input
+ 8. <input type="color" /> - color selector
+ 9. <input type="file" /> - file selector
+10. <input type="search" /> - search input
+11. <input type="radio" /> - radio input
+12. <input type="checkbox" /> - checkbox
+13. <input type="hidden" /> - hidden value input
+14. <input type="submit" /> - submit button
+15. <input type="date" /> = date input
+16. <input type="button" /> = non submit button
+17. <input type="image" src="image.png" /> - image submit button
+18. <input type="reset" /> - Reset input elements
+19. <button type="submit | image | button"></button>
+20. <select> - dropdown list
+21. <select size="n"> - list box
+22. <textarea> - multiline input
+23. <datalist> - list for text input
+
+Common attributes for form elements:
+
+1. id - Unique identifier for JavaScript and other HTML elements.
+2. name - data name that is used by the server side program.
+          Each input element must have "name" attribute.
+3. placeholder - To display dim text at background of input element
+4. disabled    - to disabled the element 
+5. required    - required field validator
+
+Best practice to design the form:
+
+1. Always wrap form with <fieldset>
+2. Use <label> to label the input element.
+
+<fieldset>
+  <legend>Employee</legend>
+  <form>
+    <p>
+      <label for="empNo">Employee No</label>
+      <input type="text" name="empNo" id="empNo"
+             placeholder="Enter no" required />
+     </p>
+    <p>
+      <label for="empName">Name</label>
+      <input type="text" name="empName" id="empName"
+             placeholder="Enter full name" required />
+     </p>
+    <p><input type="submit" name="cmd" value="Add"/></p>
+  </form>
+</fieldset>
+
+NOTE: <label for="value"> must be same as "id" value of input. That way we can set focus/cursor by selecting/clicking on label area.
+
+Use following selector to align the labels:
+
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+
+You can define selectors for input:
+
+input[type="text"] {
+  padding:3px; 
+  border:1px solid #aaa;
+  box-shadow: 0px 0px 4px #34a;
+}
+
+

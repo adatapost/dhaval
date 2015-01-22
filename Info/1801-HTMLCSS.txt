@@ -1,0 +1,201 @@
+ HTML Elements
+ =========================================================
+ HTML Elements are defined using < > markup and processed / parsed by the
+ web-browser's Or JavaScript's "parser".
+
+ There are two types of HTML elements based upon the way they represent data:
+   1. Inline elements : The content itself determine the height & width of
+			element is called "inline" and we cannot change its
+    			height/width manually.
+   		e.g. span, label, code, abbr, em, strong are example of 			inline element.
+   2. Block elements: Block element's share the width of its parent element.
+			We can change its height / width manually. They 			appear one after one line.
+		e.g div, section, form, header, footer, article, p , h1-h6,
+                    fieldset etc are example of block elements.
+
+  Some elements have both inline & block effect and hence they are known as
+  inline-block.
+
+  The display CSS property is used to change the inline to block or inline-  block or vice-versa.
+ 
+e.g   display: none;  Hides an element
+      display: inline; convert to inline
+      display: block; convert to block
+      display: inline-block; 
+
+e.g
+.red { color:red; }
+.gold {color: gold; }
+code  { border:1px solid #aaa; padding:4px; }
+<h1><span class="red">O</span>n<span class="gold">e</span></h1>
+<p>I want to learn <code>HTML</code> and <code>JavaScript</code>.</p>
+
+e.g
+  <p>
+      Press <kbd>CTRL</kbd>,<kbd>Shift</kbd> key.
+  </p>
+  <p>
+      <abbr title="HyperText Markup Language">HTML</abbr> is
+      a <em>standard</em> to present the <strong>data</strong> on web.
+      <small>Please read the document.</small>
+      x<sup>2</sup>
+      H<sub>2</sub>
+  </p>
+
+kbd { box-shadow: 2px 2px 2px #aaa;}
+abbr {  border-bottom: 1px dashed #aaa; }
+small { font-size: 70%;}
+
+
+The float and clear CSS properties
+-----------------------------------
+1. float: none | left | right; Set an element afloat either left or right or 				none.
+2. clear: both | left | right; Clear the float effect for remaining 						elements.
+
+e.g
+.float-left { float:left; }
+.float-right { float: right; }
+.clear { clear: both; }
+div { border:1px solid #aaa;}
+
+   <div class="float-right">A</div>
+   <div class="float-left">B</div>
+   <div class="float-right">C</div>
+   <div class="float-left">D</div>
+   <div class="clear"></div>
+   <div>E</div>
+   <div class="float-left">F</div>
+   <div class="float-left">G</div>
+   <div class="clear"></div>
+
+Example:
+/* Reset the margins */
+html, body, h1, div, section,article, fieldset, form, table,h2,h3,
+h4,h5,h6,ul,ol,nav,header,footer {
+    margin:0;
+}
+/* Main container of document */
+.container {
+    margin:0 auto;
+    width: 999px;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}
+
+.header { min-height: 100px; }
+
+.footer { }
+.w200 { min-width: 200px;}
+.h300 { min-height: 300px;}
+.border-right { border-right: 1px solid #aaa; }
+.border-top { border-top: 1px solid #aaa; }
+.border-left { border-left: 1px solid #aaa; }
+.border-bottom { border-bottom: 1px solid #aaa; }
+.float-left { float:left; }
+.float-right { float: right; }
+.clear { clear: both; }
+
+
+   <div class="container">
+        <div class="header border-bottom">HEADER</div>
+        <div class="float-left w200 h300 border-right">LEFT-1</div>
+        <div class="float-left">LEFT-2</div>
+        <div class="float-right w200 h300 border-left">RIGHT</div>
+        <div class="clear"></div>
+        <div class="footer border-top border-bottom">FOOTER</div>
+    </div>
+
+HTML Semantic (meaningful) elements: Use header, footer, nav, article, aside and section instead of all <div>.
+e.g
+     <div class="container">
+        <header class="header border-bottom">HEADER</header>
+        <nav class="float-left w200 h300 border-right">LEFT-1</nav>
+        <section class="float-left">
+            <article>
+                <header><h3>What is HTML?</h3></header>
+                <div></div>
+                <footer><p>Created by Mr.A</p></footer>
+            </article>
+        </section>
+        <aside class="float-right w200 h300 border-left">RIGHT</aside>
+        <div class="clear"></div>
+        <footer class="footer border-top border-bottom">FOOTER</footer>
+    </div>
+
+Example: CSS Menu
+          .....
+          <nav class="nav">
+               <ul class="menu">
+                   <li class="level1"><a href="#">Home</a></li>
+                   <li class="level1"><a href="#">About us</a></li>
+                   <li class="level1">
+                       <a href="#">Product</a>
+                       <ul>
+                           <li><a href="#">Item 1</a></li>
+                           <li><a href="#">Item 2</a></li>
+                           <li><a href="#">Item 3</a></li>
+                       </ul>
+                   </li>
+                   <li class="level1">
+                       <a href="#">Services</a>
+                       <ul>
+                           <li><a href="#">We are someone</a></li>
+                           <li><a href="#">You wanted to learn</a></li>
+                           <li><a href="#">Item 3</a></li>
+                       </ul>
+                   </li>
+               </ul>
+           </nav>
+CSS:
+
+.nav { background: #112233; padding:0px;}
+.nav a{ text-decoration: none; color: gold;}
+/* set style of all ul */
+.nav ul { list-style: none; padding: 0px;}
+.menu > li { display: inline-block; padding: 4px;}
+.menu li:hover { background: red;}
+
+/* hide sub-menu and set properties */
+.level1 > ul { display: none; position: absolute; background: #112233;}
+
+/* sub-menu items properties */
+.level1 li { padding: 4px;}
+.level1 li:hover { background: red;}
+
+/* show sub-menu */
+.level1:hover > ul {
+  display: block;
+}
+
+Example: Sticky footer
+
+CSS:
+
+html, body, h1, div {
+    margin:0;
+}
+html, body {  height: 100%; }  /* height 100% */
+.container {
+    height:100%;               /* height 100% */
+    margin:0 auto;
+    width: 999px;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}
+.page {
+    min-height: 100%;         /* 100% - footer-height */
+    margin-bottom: -100px;
+}
+.footer {
+    background: #112233; color:gold;
+    min-height: 100px;
+}
+
+    <div class="container">
+       <section class="page">
+          <header class="header"><h1>Hello Site</h1></header>
+           <nav class="nav"></nav>
+           <div class="content"></div>
+       </section>
+        <footer class="footer">Footer</footer>
+    </div>
