@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<input type="button" value="OK"/>
+<script>
+
+    var amount = prompt('Enter amount  : ');
+    if( parseFloat( amount ) ) {
+        alert( 'You have input ' + amount );
+        var result = confirm('Do you want to continue?');
+        if( result ) {
+            alert('OK is pressed');
+        } else {
+            alert('Cancel is pressed');
+        }
+    } else {
+        alert('Invalid input. Refresh the page');
+    }
+</script>

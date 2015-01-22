@@ -1,33 +1,37 @@
-body {
-    background: url(big-star.png) no-repeat center center;
-    background-attachment: fixed;
+html, body, h1, div {
+    margin:0;
+}
+html, body {  height: 100%; }
+.container {
+    height:100%;
+    margin:0 auto;
+    width: 999px;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}
+.page {
+    min-height: 100%;
+    margin-bottom: -100px;
+}
+.footer {
+    background: #112233; color:gold;
+    min-height: 100px;
+}
 
-}
-.box {
-    border: 1px solid #aaa;
-    box-shadow: 0px 0px 3px red;
-    border-radius:40px 0px 0px 40px;
-    padding: 10px 30px 10px 30px;
+.nav { background: #112233; padding:0px;}
+.nav a{ text-decoration: none; color: gold;}
+/* set style of all ul */
+.nav ul { list-style: none; padding: 0px;}
+.menu > li { display: inline-block; padding: 4px;}
+.menu li:hover { background: red;}
+
+.level1 > ul { display: none; position: absolute; background: #112233;}
+.level1 li { padding: 4px;}
+.level1 li:hover { background: red;}
+.level1:hover > ul {
+  display: block;
 }
 
-.icon {
-    border:1px solid #aaa;
-    width: 60px;
-    height: 60px;
-}
-.first{
-    background: url(icons.png) no-repeat 0px 0px ;
-}
-.second{
-    background: url(icons.png) no-repeat -65px 0px;
-}
-.three{
-    background: url(icons.png) no-repeat -145px 0px;
-}
-.first:hover{
-    background: url(icons.png) no-repeat 0px -60px;
-}
-.second:hover{
-    background: url(icons.png) no-repeat -65px -60px;
-}
+
+
 
