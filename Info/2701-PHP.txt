@@ -1,0 +1,253 @@
+ String datatype
+ ================
+ Four different ways to represent strings:
+
+ 1. single quoted string - Which escape the backslash characters.
+ 2. Double quoted string - Which processes the backslash characters.
+ 3. HEREDOC syntax - doulbe quoted string
+ 4. NOWDOC Syntax  - single quoted string
+
+    [Backslash characters : \n \r \t \" \' \b \a etc ]
+ 
+Example:
+<?php
+ $path1 = 'c:\new folder\test';
+ $path2 = "c:\new folder\test";
+
+ echo "<br/>", $path1;
+ echo "<br/>", $path2;
+
+ $path2 = "c:\\new folder\\test"; // escape manually
+ echo "<br/>", $path2;
+?> 
+
+
+Example:
+<?php
+  $info1 = 'This is "red" pen';
+  $info2 = "This is \"red\" 'pen'"; //escape manually
+  $info3 = 'This is \'red\' pen'; //escape single quote manually
+  echo "<br/>", $info1;
+  echo "<br/>", $info2;
+  echo "<br/>", $info3;
+
+ Export or expand the variables using double quotes however single  quote string cannot.
+ Example:
+<?php
+  $no = 10;
+  $name = "Raj";
+  
+  $info1 = "I am $name and my roll is $no";
+  $info2 = 'I am $name and my roll is $no';
+
+  echo "<br/>" , $info1, "<br/>", $info2;
+?>
+Output:
+I am Raj and my roll is 10
+I am $name and my roll is $no
+
+Variable embed into double quoted string will emit or extract its data and convert it to string. 
+
+HEREDOC (double quoted string) Syntax:
+ 
+$varName = <<<Your_block_name
+Your string
+can be span into 
+multiple lines 
+Your_block_name;  <---- End of string 
+
+NOWDOC (single quoted string) syntax:
+
+$varName = <<<'Your_block_name'
+Your string
+can be span into 
+multiple lines 
+Your_block_name;  <---- End of string 
+
+Most Important: The end "Your_block_name" is used-defined word and must be placed at the first position of newline.
+
+Example:
+
+<?php
+$no = 10;
+$name = "Raj";
+
+$info1 = <<<ABC
+Dear $name,
+How are you? You've alloted $no as your roll.
+ABC;
+
+//single quoted - NOWDOC
+$info2 = <<<'ABC'
+Dear $name,
+How are you? You've alloted $no as your roll.
+ABC;
+
+echo "<br/>" , $info1;
+echo "<br/>" , $info2;
+?>
+
+ The . operator - string concat operator
+ ===========================================
+ Example:
+<?php
+  $toDay = date('d-m-Y');
+  
+  echo "<br/>" . $toDay;
+  echo "<p>Today " . $toDay . " is my exam.</p>";
+  echo '<p>Today ' . $toDay . ' is my exam.</p>';
+  echo "<p>Today $toDay is my exam.</p>"; //expand
+?>
+
+ The [index] - subscript operator to set/get character
+ ====================================================
+ <?php
+    $name = "Man";  
+    echo "<br/>", $name[0] , $name[2];
+    $name[0] = "T";
+    echo "<br/>",$name;
+ ?>
+
+ String functions
+ -----------------
+<?php
+ $str = "the red sun";
+ //1. strlen(str) - length
+ echo "<br/>", strlen($str);
+ //2. strtoupper($str) - uppercase
+ echo "<br/>", strtoupper($str);
+ //3. strtolower($str); - lowercase
+ echo "<br/>", strtolower($str);
+ //4. ucwords($str) - capitalize the first letter of each word
+  echo "<br/>", ucwords($str);
+ //5. ucfirst($str) - capitalize the first letter of string
+  echo "<br/>", ucfirst($str);
+?>
+
+Operators
+===================================================
+1. Arithmetic operators (used with number only)
+   + - * / %
+2. Assignment operator 
+   =
+3. Increment/Decrement operator (only for number)
+   ++ and --  
+4. Relational operator
+   >  >=  <  <=  ==  !=  === (equality operator)   ==! (not equality)
+  
+   === and ==!  compares data and its datatype
+   == and !=    compares data only
+Example:
+<?php
+  if( 1 === "1") {   /* 1=='1' */
+      echo "Eq";
+  }else {
+      echo "No Eq";
+  }
+?>
+5. Logical or boolean operator
+    &&  ||  ! (not)
+
+6. Conditional operator
+   exp1 ? exp2 : exp3; If exp1 is true the "exp2" will be executed,                        "exp3" will be executed if "exp1" is false.
+Example:
+
+<?php
+ $gender = "Female";
+?>
+Male: <input type="radio"
+             <?php echo ($gender == 'Male' ? 'Checked' : '') ?>
+             name="gender"/>
+Female: <input type="radio"
+               <?php echo ($gender == 'Female' ? 'Checked' : '') ?>
+               name="gender"/>
+7. @ error suppress operator - To hide errors especially calling a                                function.
+    e.g <?php  @strlen() ?>
+8. backtick  ` ` - To execute external command (OS command or program)
+<?php
+  $dt = `dir`;
+  echo $dt;
+?> 
+
+Control statements
+-------------------
+1. if
+2. switch
+3. for loop
+4. while loop
+5. do while loop   -- All syntax derived from C/C++.
+6. foreach loop - To traverse the arrays.
+
+Example:
+
+<select>
+    <?php
+     for($i=1; $i<=10;$i++) {
+         if($i==5)
+             echo "<option selected>$i</option>";
+         else
+             echo "<option>$i</option>";
+     }
+    ?>
+</select>
+<select>
+    <?php
+    $i=10;
+    while($i>0) {
+        echo "<option>$i</option>";
+        $i--;
+    }
+    ?>
+</select>
+
+Example: Embed php and html code vice-versa
+ 
+<select>
+    <?php
+     for($i=1; $i<=10;$i++) {
+         ?>
+       <option><?php echo $i?></option>
+    <?php
+     }
+    ?>
+</select>
+
+
+Check the datatype of value (Validation purpose)
+----------------------------------------------------------
+PHP has number of type checking functions whose name
+begins with "is_xxxx". eg. is_int, is_float, is_string, is_array, is_date, is_bool etc.
+
+Example:
+<?php
+  $no = '10.0';
+  if(is_int($no))
+     echo "Int";
+  else
+  if(is_float($no))
+     echo "Float";
+  else
+  if(is_string($no))
+     echo "String";
+  else
+     echo "Other";
+?>
+
+ Convert "string" data to number using arithmetic operators
+ ============================================================
+ Any operator + - * / % is used with string value convert string to int or float.
+
+Example:
+<?php
+ $str = '10.10';
+ $no = 0 + $str;
+ var_dump($no);
+
+ $str = "10 pen";
+
+ $no = 0 + $str;  // 0.0 + $str
+ var_dump($no);
+ var_dump("10 pencils " + "10 pens");
+ var_dump("pencils 10 " + "pens 10"); // 0 + 0 = 0
+ var_dump("10 pencils " - "5 pencils");
+?>

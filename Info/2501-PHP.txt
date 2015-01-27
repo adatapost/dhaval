@@ -1,0 +1,178 @@
+ PHP Platform
+ -------------
+ PHP Language, PHP Library and PHP Engine/Runtime forms the "PHP  Platform".
+
+ PHP Language
+ ============
+ 1. PHP is untype, dynamic programming language (Just like a     JavaScript).
+ 2. PHP supports OOP and functional programming.
+ 3. PHP is case-insensitive programmming language. Only the     "variable-names" are case-sensitive.
+
+ 4. PHP code file must have .php extension. PHP runtime only     processes/interprets .php files.
+ 
+ PHP Code tags
+ -------------
+ To write PHP statements in a document we have to use following   syntax:
+
+  <?php
+     ....
+   ?>
+
+ Never use non-standard code tags - e.g <? ...?> , 
+ <script language="php"></script> and <% .. %>
+
+ PHP Variables and datatypes
+ ---------------------------
+ Variable name must begins with $ sign and it is case-sensitive. As  PHP is dynamic language hence it has no explict datatypes - e.g int,   char, float etc.
+
+ There can be a "string", "number", "function", "array", "class", or  "an object" type of datatypes.
+
+ PHP offers a function "gettype()" to determine the datatype of value  or variable.
+
+ We can also use following debug constructs to understand the value or  variable:   
+             var_dump() and var_export()
+
+ var_dump() represent data & types interactively (CSS properties)
+ var_export() represents PHP style syntax and data.
+
+Example:
+<?php
+$no = 10;
+$name = 'Hello';
+$stat = true;
+$info = array();
+
+var_export($no);
+var_export($name);
+var_export($stat);
+var_export($info);
+
+var_dump($no);
+var_dump($name);
+var_dump($stat);
+var_dump($info);
+
+ Outputing data on the browser
+ -----------------------------
+ We have two constructs namely - echo and print to write data onto the  response buffer (output).
+
+ Syntax:  echo value1,value2,....;
+          echo (value);
+          print value;
+          print(value);
+
+ The "echo" can write more than one data. If () is used with echo then  we can write single data.
+
+ The print can write single data.
+
+Example:
+<?php
+$no = 10;
+$name = 'Hello';
+$stat = true;
+
+echo "No : ",$no,"Name : ",$name,"Status : " ,$stat;
+echo($no);
+print $name;
+print ($name);
+
+Embed the PHP code block
+--------------------------
+PHP code inside the HTML tags.
+
+<?php
+$no = 10;
+$name = 'Rajesh';
+?>
+<p>No : <?php echo $no ?></p>
+<p>Name: <?php echo $name?></p>
+No: <input type="text" value="<?php echo $no?>" />
+Name: <input type="text" value="<?php echo $name?>" />
+
+IMPORTANT: No need to terminate ( add semicolon ; ) if it is last statement.
+
+Embed HTML into PHP code
+--------------------------
+<?php
+  $no = 10;
+  $name = "Rajesh";
+
+  echo "<br/>Roll : ",$no;
+  echo "<br/>Name : ",$name;
+
+  echo "<p>",$no,"</p>";
+?>
+
+The "isset", "empty" and "unset" keywords
+=======================================================
+1. isset() - to determine whether a variable is exists or not.
+   Syntax:
+         bool  isset(var1,var2,...);
+
+2. empty() - To determines whether a variable is exists or not as well              as it has value or not.
+   Syntax:
+          bool empty(var);
+3. unset() - To remove memory variable
+   Syntax:
+           unset(var);
+
+
+Example: Check whether $no and $name exists or not.
+<?php
+ $no = 10;
+ $name = "Raj";
+ if( isset($no,$name)) {
+    echo "Exists ",$no,$name;
+ } else {
+   echo "Not Exists";
+ }
+?>
+
+Example: Remove memory variable
+<?php
+ $no = 10;
+ if(isset($no)) {
+   echo "<br/>", $no;
+ }
+unset($no); // Delete
+if(isset($no)) {
+  echo "<br/>", $no;
+} else {
+  echo "<br/>Not";
+}
+?>
+
+
+The "falsy" value
+--------------------
+PHP consider following values as a "false".
+
+0 or 0.0
+"" or '' (empty string)
+null
+false
+
+Example:
+<?php
+ $no = 0;
+ if($no) {
+    echo "<br/>Value = ", $no;
+ } else {
+    echo "<br/>No value";
+ }
+?>
+
+What will happen when $no is not exist in above example?
+  Ans: Error will be reported.
+So it is good practice to use "empty()".
+
+<?php
+$no = 0;
+if(!empty($no)) {
+  echo "<br/>Value = ", $no;
+} else {
+  echo "<br/>No value";
+}
+?>
+
+            
