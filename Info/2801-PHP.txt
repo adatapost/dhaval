@@ -1,0 +1,297 @@
+ Arrays
+ ====================================================
+ Two types of PHP arrays:
+
+   1. Indexed array and
+   2. Associate or map array
+
+  Indexed array : Elements are set/get via integer index.
+  Associate array : Each element in an array has a "key" or "name".
+
+Example:
+<?php
+  $nos = array(10,20,30,40);  // Indexed array
+  echo "<br/>", $nos[0], $nos[1], $nos[2], $nos[3];
+  var_dump( $nos );
+
+  $nos[0] = 1000;  // Update element
+  $nos[12] = 5000; // Set new element
+
+  var_dump($nos);
+?>
+
+Append an element into an array
+--------------------------------
+ You can add new element at the end of array using :
+
+    $varName[] = newValue; 
+
+
+<?php
+    $cities = array(); // Empty array
+    $cities[] = "Mehsana"; 
+    $cities[] = "Patan"; 
+    $cities[20] = "Sidhpur";   //20 index
+    $cities[] = "Palanpur";    //21 index
+
+    var_dump($cities);
+    print_r($cities);
+?>
+
+Print_r is also a debug function it prints entire array to understand the array elements.
+
+
+ Associate Array
+ ---------------
+ Syntax:
+
+    $varName = array("key1"=>value1, "key2"=>value2, ...);
+ 
+    Each element has "unique" name/key.
+
+Example:
+<?php
+  $emp = array("id"=>10, "name"=>"Rajesh", "salary"=>3000.45);
+  var_dump($emp);
+
+  echo "<br/>", $emp["id"], $emp['name'], $emp["salary"];
+?>
+
+ foreach loop - Traverse the arrays
+ ======================================
+ To traverse or iterate indexed or associate arrays always use  "foreach" loop.
+
+ Syntax-1
+
+   foreach($arrayVar as $keyVar=>$valueVar)
+    {
+      //statements
+    }
+
+ Syntax-2
+
+   foreach($arrayVar as $valueVar)
+    {
+      //statements
+    }
+<?php
+  $nos = array(10,20,30,40);
+
+  foreach($nos as $no) {
+    echo "<br/>", $no;
+  }
+ foreach($nos as $index=>$no) {
+    echo "<br/>", $index," - " , $no;
+  }
+
+  $std = array(
+      "roll" => 10,
+      "name" => "Heena",
+      "age"  => 10
+   );
+ foreach($std as $k=>$v ) {
+     echo "<br/>", $k, " - ", $v;
+ }
+
+
+File inclusion statements
+-----------------------------------------------------------
+PHP offers file inclusion statements to create separate code files and later use them by adding/including into another file.
+
+That way we can re-use the "file" or "content of file" in two or more
+PHP programs. 
+
+1. include "filename" or include("filename")
+2. include_once "filename" or include_once("filename")
+3. require "filename" or require("filename")
+4. require_once "filename" or require_once("filename")
+
+
+Example:
+
+page1.php
+---------
+<h1>Welcome to site</h1>
+
+show.php
+----------
+<h3><?php echo $name ?></h3>
+<address><?php echo $address?> </address>
+
+main.php     <---- Current PHP program
+---------
+<?php
+  include "page1.php";    <--- included file
+  $name = "Raj";
+  $address = "12-ABC Society";
+  include "show.php";     <--- included file
+  $name = "Man";
+  include "show.php";     <--- included file
+?>
+
+Note that the included file can be .html, .php or you can choose any file with any extension.
+
+
+include vs include_once : The "include" allow us to insert a "same" file more than once. The "include_once" insert a file only once.
+ 
+                        : Both constructs show warning and keep execution continue if given filename is not exists.
+
+require Vs require_once : Same as include and include_once but they
+stop/halt the page execution if given file is not exists.
+
+Example: Design webapp layout
+---------------------------------
+header.php
+----------
+<!doctype html>
+<html>
+  <head>
+    <title><?php echo ( empty($title) ? "Welcome" : $title) ?></title>
+  </head>
+  <body>
+    <div>
+      <header><h1>ABC Site</h1></header>
+      <nav>
+         <a href="index.php">Home</a> 
+         <a href="about.php">About us</a>
+      </nav>
+      <section> 
+
+footer.php
+-------------
+      </section>
+      <footer><p>&copy; ABC Site - 2015</p></footer>
+    </div>
+   </body>
+ </html>
+
+index.php
+---------
+<?php
+  $title = "Home";
+  include_once "header.php";
+?>
+<h3>Welcome Home</h3>
+
+<?php include_once "footer.php" ?>
+
+about.php
+---------
+<?php
+  $title = "About us";
+  include_once "header.php";
+?>
+<h3>About us</h3>
+
+<?php include_once "footer.php" ?>
+
+
+Example: Array examples
+
+1. List country name
+
+<?php
+  $countries = array("India","Napal","USA");
+?>
+
+<select>
+  <?php
+    foreach($countries as $c) {
+      echo "<option>$c</option>";
+    }
+  ?>
+</select>
+
+2. Store 3 students data ( Nested array)
+<?php
+  $students = array(
+   array("roll"=>10, "name"=>"Raj", "eng"=>90, "sci"=>76, "guj"=>70),  
+   array("roll"=>20, "name"=>"Maj", "eng"=>50, "sci"=>96, "guj"=>76), 
+   array("roll"=>30, "name"=>"Yaj", "eng"=>34, "sci"=>88, "guj"=>98)
+  );
+?>
+<table>
+ <?php
+   foreach($students as $s) {
+     ?>
+    <tr>
+      <td><?php echo $s["roll"]?></td>   
+      <td><?php echo $s["name"]?></td>
+      <td><?php echo $s["eng"]?></td>
+      <td><?php echo $s["sci"]?></td>
+      <td><?php echo $s["guj"]?></td>
+      <td><?php echo $s["eng"]+ $s["sci"] + $s["guj"] ?></td>
+      <td><?php echo ($s["eng"]+ $s["sci"] + $s["guj"])/3 ?></td>
+    </tr>
+  <?php
+   }
+ ?>
+</table>
+
+The superglobal arrays 
+========================
+These arrays are created by the PHP Engine itself and they are available to everywhere -- inside any .php, class, or function.
+
+1. $_POST - To represent POST Request data
+2. $_GET  - To represent GET Request data
+3. $_REQUEST - To represent both GET and POST request data
+4. $_SESSION - To represent session data
+5. $_FILES   - To represent uploaded file data
+6. $_COOKIE  - To represent cookies
+7. $_SERVER  - To represent Apache and PHP server 		configuration variables
+8. $ENV      - To represent OS environment variables.
+9. $GLOBALS  - To represent "global" or "page-level" variables.
+
+PHP variables are case-sensitive so all above mentioned names must be strictly upperletters.
+
+Working with <form>
+========================
+There are two ways to sent data to the "server".
+
+  1. GET request method - That is a default method.
+     			  1. Typing a url in addressbar
+                          2. Clicking on hyperlink
+                          3. <form method="get"> or <form>
+                         All above requests type is "GET".
+      The "GET" is used to read the "resource or data".
+
+  2. POST request method - When we want to write something to PHP 		server (database, file etc) , we must have to use
+		POST request method.
+                1. <form method="post"> and
+                2. Javascript   are two ways to use POST request.
+
+      
+In GET method, you can send small amount of data via "addressbar url" called "query string".
+ 
+ e.g
+  http://localhost/sample.php?no=10&name=Rajesh
+                              |                |
+                               --- query String-
+   no=10&name="Rajesh" is called query string and you can receive    these data using $_GET array.
+
+In POST method, you can send huge amount of data including files in a small chunks of "byte arrays" backgroundly.
+
+Example: Get request
+
+sample1.php
+------------
+<?php
+  print_r($_GET);
+?>
+
+<form>
+  <input type="text" name="no"/>
+  <input type="text" name="name"/>
+  <input type="submit"/>
+</form>
+
+<a href="sample1.php?no=100&name=Man">Get Request</a>
+
+sample2.php  - POST request data
+-----------
+<?php
+  var_dump($_POST);
+?>
+<form method="post">
+  .... same as above...
+</form>
