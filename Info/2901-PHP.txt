@@ -1,0 +1,107 @@
+ Best Practice to design <form> and receive data
+ ================================================
+ <?php
+
+  /* Create necessary variables */
+  $empNo = 0;
+  $empName = "";
+  $message = "";
+  $cmd = "";
+
+  /* Determine whether a form is submitted using POST method */
+
+  if(isset( $_POST["cmd"] )) {
+     $cmd   = $_POST["cmd"];
+     $empNo = 0 + $_POST["empNo"]; // Integer
+     $empName = $_POST["empName"]; // string
+
+     /* Add button actions */
+     if($cmd == "Add") {
+        $message = "Add button - $empNo  $empName";
+     }
+     if($cmd == "Delete") {
+        $message = "Delete button - $empNo  $empName";
+     }
+  } // End of $_POST checking
+
+  /* Write code that you want to execute one each request */
+  //  ....
+  //  ....
+  ?>
+
+ <fieldset>
+   <legend>Employee</legend>
+    <form method="post">
+      <p><label for="empNo">No</label>
+         <input type="text" name="empNo" 
+                value="<?php echo $empNo?>" 
+                id="empNo"/></p>
+      <p><label for="empName">No</label>
+         <input type="text" name="empName"
+                value="<?php echo $empName?>" 
+                id="empName"/></p>
+      <p>
+         <input type="submit" name="cmd" value="Add"/>
+         <input type="submit" name="cmd" value="Delete"/>
+      </p>
+     </form>
+     <p><?php echo $message?> </p>
+  </fieldset>
+ 
+Example: Working with "radio" buttons.
+
+<?php
+  $gender = "";
+  
+ // Always check radio and checkbox individually
+  if(isset($_POST["gender"])) {
+      $gender = $_POST["gender"];
+  }
+?>
+<form method="post">
+    Gender:
+    Male <input type="radio"
+                name="gender"
+                <?php echo ($gender=="Male" ? "checked" : "") ?>
+                value="Male"/>
+    Female <input type="radio"
+                 <?php echo ($gender=="Female" ? "checked" : "") ?>
+                  name="gender"
+                  value="Female"/>
+    <input type="submit" name="cmd" value="Submit"/>
+</form>
+
+Example: Working with "checkboxes". Always prefer unique name to each checkbox. (Homework)
+
+<?php
+var_dump($_POST);
+$read = "";
+$write = "";
+$play = "";
+
+ if(isset($_POST["read"])) {
+     $read = $_POST["read"];
+ }
+if(isset($_POST["write"])) {
+    $write = $_POST["write"];
+}
+if(isset($_POST["play"])) {
+    $play = $_POST["play"];
+}
+
+?>
+<form method="post">
+    Hobbies:
+      <br/><input type="checkbox" name="read"
+                  <?php echo ($read == "read" ? "checked" : "") ?>
+                  value="read"/> Read
+       <br/><input type="checkbox" name="write"
+        <?php echo ($write == "write" ? "checked" : "") ?>
+                   value="write"/> Write
+       <br/><input type="checkbox" name="play"
+        <?php echo ($play == "play" ? "checked" : "") ?>
+                   value="play"/> Play
+
+    <input type="submit" name="cmd" value="Submit"/>
+</form>
+
