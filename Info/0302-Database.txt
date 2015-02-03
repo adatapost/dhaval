@@ -1,0 +1,213 @@
+ Database
+ ===============================================================
+ MySql is RDBMS - Relational Database Management System from "Oracle  Corp" and it is free and open source product.
+
+ Database ServerName:  localhost
+ Database Admin user:  root
+ Database Admin pass:            
+
+ 
+ Relation means "Table". A Table is a collection of unique fields or  columns where each field has one or more "constraints or rules".
+
+ Following are commonly used constraints:
+
+  1. Primary key : It prevents duplicate value.
+                   It prevents null (empty).
+                   It enhance the searching capability.
+  2. Unique      : It prevents duplicate value but allow null.
+                   It enhance the searching capability.
+  3. Foreign key : It prevents un-referenced value and allow null.
+                   It enforces referential integrity.
+
+   create table dept
+   (
+     dept_id int primary key,
+     dept_name varchar(40)
+    )
+   dept_id   dept_name
+    10        Acc
+    20        HR
+
+   create table emp
+   (
+    emp_id int primary key,
+    emp_name varchar(40),
+    dept_id int,
+    foreign key(dept_id) references dept(dept_id)
+    )
+   emp_id   emp_name  dept_id
+    1       Rajesh    40 <-- error - reference / foreign key value
+				violated
+    1       Rajesh   10 <--valid
+    2       Mohan    10 <---valid
+    3       Test         
+
+   4. Null   -- To allow null. i.e optional value
+   5. Not null -- To prevent null (empty).
+   6. default  -- To assign default value while inserting a record.
+   7. auto_increment - Auto increment for "int" column
+
+Example:
+
+ create table dept
+  (
+    dept_id int primary key auto_increment,
+    dept_name varchar(40) not null,
+    dept_location varchar(40) default 'Mehsana'
+   )
+
+insert into dept (dept_name,dept_location) values ('Acc','Bombay');
+insert into dept (dept_name) values ('HR');
+  
+
+PHPMyAdmin website
+======================
+We've PHPMyAdmin tool in "wamp/xampp". First of all start the "wamp" server".
+
+Open the web-browser with:  
+
+     http://localhost/phpmyadmin
+
+
+
+Example:
+
+ Create tables - dept and emp using wizard.
+
+ 1. TableName [ dept ]  columns [3]
+    Set column name, datatype, size, default, constraints 	(primary/unique/index) , auto_increment 
+
+ 2. Set "Index" constraints for those columns where you wish to add     "foreign key" constraints.
+
+ 3. To add foreign key, open the "table - emp".
+    Add "index" key to "dept_id" column (click at More button)
+    Click on "Relational View" and set "foreign table : Dept" and
+    foreign key "dept_id" + OK
+
+PHP And MySql Integration
+==================================================================
+We will use PDO - PHP Data Object library to access the MySql database programatically.
+
+To connect to MySql database server:
+
+  $cn = new PDO("mysql:host=localhost;dbname=dhaval_db","root","");
+                 ^           ^                ^           ^     ^ 
+                 |           |                |           |     |
+           Database       Server             Database     | Password
+           Product                           name         |
+                                                       Username
+ 
+To execute INSERT/DELETE/UPDATE statements:
+
+   $cn = new PDO("mysql:host=localhost;dbname=dhaval_db","root","");
+   $sql = "insert into dept (dept_name, dept_location) values (?,?)";
+   //Compile the statement
+   $st = $cn->prepare( $sql );
+
+   //execute the statement
+   $st->execute( array('Accounting','Bombay') );
+   $st->execute( array('HR','Mehsana') );
+
+
+To execute "SELECT" statement
+
+   $cn = new PDO("mysql:host=localhost;dbname=dhaval_db","root","");
+   $sql = "select * from dept";
+   //Compile the statement
+   $st = $cn->prepare( $sql );
+
+   //execute the statement
+   $st->execute();
+   
+   //fetch the result
+   $rows = $st->fetchall();
+
+   var_dump($rows);
+   foreach($rows as $r) {
+     echo "<br/>" , $r[0], $r['dept_name'], $r[2];
+   }
+
+
+fetchall() function read all rows at once but you can call "fetch" function to read a row one by one.
+
+Example:
+ .....
+ ... sample as previous... 
+ ...
+
+ $st->execute();
+ while( $r = $st->fetch() ) {
+   echo "<br/>", $r[0], $r['dept_name'], $r[2];
+ }
+
+Example: Insert record using <form> element.
+
+<?php
+ $cn = new PDO("mysql:host=localhost;dbname=dhaval_db","root","");
+ $dept_name = "";
+ $dept_location = "";
+ $cmd = "";
+ $message = "";
+
+ if(isset($_POST["cmd"])) {
+     $cmd = $_POST["cmd"];
+     $dept_name = $_POST["dept_name"];
+     $dept_location = $_POST["dept_location"];
+ }
+ if($cmd == "Add") {
+     $sql = "insert into dept (dept_name,dept_location) values (?,?)";
+     $st = $cn->prepare($sql);
+     $st->execute(array($dept_name,$dept_location));
+     $message = "Department added successfully";
+ }
+
+ /* Fetch all depts  */
+ $sql = "select * from dept";
+ $st = $cn->prepare($sql);
+ $st->execute();
+ $rows = $st->fetchall();
+?>
+<form method="post">
+    <br/>Name : <input type="text" name="dept_name"/>
+    <br/>Location : <input type="text" name="dept_location"/>
+    <br/><input type="submit" name="cmd" value="Add"/>
+    <br/><?php echo $message?>
+</form>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+    </tr>
+    <?php
+      foreach($rows as $r) {
+          ?>
+      <tr>
+          <td><?php echo $r['dept_name']?></td>
+          <td><?php echo $r[2]?></td>
+      </tr>
+     <?php
+      }
+    ?>
+</table>
+
+Example:
+Roll : _______
+Name : _______
+Gender: ( ) Male ( ) Female
+Hobbies:
+       [x] Read books
+       [x] Play cricket
+       [x] Write poems
+
+ [Submit]
+
+create table student 
+( 
+  roll int primary key,
+  name varchar(40),
+  gender varchar(7),
+  hb_read bool,
+  hb_play bool,
+  hb_write bool
+)
+ 

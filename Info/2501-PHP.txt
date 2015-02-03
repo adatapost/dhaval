@@ -1,14 +1,14 @@
  PHP Platform
  -------------
- PHP Language, PHP Library and PHP Engine/Runtime forms the "PHP  Platform".
+ PHP Language, PHP Library and PHP Engine/Runtime forms the "PHP   Platform".
 
  PHP Language
  ============
- 1. PHP is untype, dynamic programming language (Just like a     JavaScript).
+ 1. PHP is untype, dynamic programming language (Just like a         JavaScript).
  2. PHP supports OOP and functional programming.
- 3. PHP is case-insensitive programmming language. Only the     "variable-names" are case-sensitive.
+ 3. PHP is case-insensitive programmming language. Only the         "variable-names" are case-sensitive.
 
- 4. PHP code file must have .php extension. PHP runtime only     processes/interprets .php files.
+ 4. PHP code file must have .php extension. PHP runtime only         processes/interprets .php files.
  
  PHP Code tags
  -------------
@@ -71,7 +71,9 @@ $no = 10;
 $name = 'Hello';
 $stat = true;
 
-echo "No : ",$no,"Name : ",$name,"Status : " ,$stat;
+echo "No : ",$no,
+     "Name : ",$name,
+     "Status : " ,$stat;
 echo($no);
 print $name;
 print ($name);

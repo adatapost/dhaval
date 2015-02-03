@@ -4,7 +4,7 @@
 
  1. single quoted string - Which escape the backslash characters.
  2. Double quoted string - Which processes the backslash characters.
- 3. HEREDOC syntax - doulbe quoted string
+ 3. HEREDOC syntax - double quoted string
  4. NOWDOC Syntax  - single quoted string
 
     [Backslash characters : \n \r \t \" \' \b \a etc ]
@@ -30,9 +30,11 @@ Example:
   echo "<br/>", $info1;
   echo "<br/>", $info2;
   echo "<br/>", $info3;
+?>
 
- Export or expand the variables using double quotes however single  quote string cannot.
- Example:
+Export or expand the variables using double quotes however single  quote string cannot.
+
+Example:
 <?php
   $no = 10;
   $name = "Raj";
@@ -49,7 +51,7 @@ I am $name and my roll is $no
 Variable embed into double quoted string will emit or extract its data and convert it to string. 
 
 HEREDOC (double quoted string) Syntax:
- 
+------------------------------------ 
 $varName = <<<Your_block_name
 Your string
 can be span into 
@@ -57,17 +59,16 @@ multiple lines
 Your_block_name;  <---- End of string 
 
 NOWDOC (single quoted string) syntax:
-
+------------------------------------
 $varName = <<<'Your_block_name'
 Your string
 can be span into 
 multiple lines 
 Your_block_name;  <---- End of string 
 
-Most Important: The end "Your_block_name" is used-defined word and must be placed at the first position of newline.
+Most Important: The end "Your_block_name" is user-defined word and must be placed at the first position of newline.
 
 Example:
-
 <?php
 $no = 10;
 $name = "Raj";
